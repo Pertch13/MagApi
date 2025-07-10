@@ -1,0 +1,531 @@
+{
+  "stats": {
+    "suites": 6,
+    "tests": 15,
+    "passes": 0,
+    "pending": 0,
+    "failures": 15,
+    "start": "2025-07-10T10:43:16.156Z",
+    "end": "2025-07-10T10:43:34.569Z",
+    "duration": 18413,
+    "testsRegistered": 15,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "8de5d679-0a10-474c-89ea-f2849cf01312",
+      "title": "",
+      "fullFile": "cypress/e2e/api/authentication.cy.ts",
+      "file": "cypress/e2e/api/authentication.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e8f95dbb-5209-4091-9e66-93662afbe6c5",
+          "title": "Authentication API Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "2e279236-5525-4657-869a-afe8bfc3397b",
+              "title": "User Registration",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should register a new user successfully",
+                  "fullTitle": "Authentication API Tests User Registration should register a new user successfully",
+                  "timedOut": null,
+                  "duration": 294,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.generateTestData('user').then((userData) => {\n    cy.apiRequest('POST', '/auth/register', userData)\n        .then((response) => {\n        expect(response.status).to.equal(201);\n        expect(response.body).to.have.property('user');\n        expect(response.body).to.have.property('token');\n        expect(response.body.user.email).to.equal(userData.email);\n        // Validate response structure\n        cy.validateResponse(response, {\n            user: {\n                id: 'string',\n                email: 'string',\n                firstName: 'string',\n                lastName: 'string'\n            },\n            token: 'string'\n        });\n    });\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 201",
+                    "estack": "AssertionError: expected 404 to equal 201\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:15:39)",
+                    "diff": "- 404\n+ 201\n"
+                  },
+                  "uuid": "772c7bdb-160d-45f7-a9e9-6a24737e2b6b",
+                  "parentUUID": "2e279236-5525-4657-869a-afe8bfc3397b",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject registration with invalid email",
+                  "fullTitle": "Authentication API Tests User Registration should reject registration with invalid email",
+                  "timedOut": null,
+                  "duration": 410,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "testData.validation.invalidEmails.forEach((invalidEmail) => {\n    cy.generateTestData('user').then((userData) => {\n        userData.email = invalidEmail;\n        cy.apiRequest('POST', '/auth/register', userData)\n            .then((response) => {\n            expect(response.status).to.equal(400);\n            expect(response.body).to.have.property('message');\n            expect(response.body.message).to.include('email');\n        });\n    });\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 400",
+                    "estack": "AssertionError: expected 404 to equal 400\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:41:41)",
+                    "diff": "- 404\n+ 400\n"
+                  },
+                  "uuid": "db28bccc-fee7-4edf-ba6f-febe4c667b31",
+                  "parentUUID": "2e279236-5525-4657-869a-afe8bfc3397b",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject registration with invalid password",
+                  "fullTitle": "Authentication API Tests User Registration should reject registration with invalid password",
+                  "timedOut": null,
+                  "duration": 281,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "testData.validation.invalidPasswords.forEach((invalidPassword) => {\n    cy.generateTestData('user').then((userData) => {\n        userData.password = invalidPassword;\n        cy.apiRequest('POST', '/auth/register', userData)\n            .then((response) => {\n            expect(response.status).to.equal(400);\n            expect(response.body).to.have.property('message');\n            expect(response.body.message).to.include('password');\n        });\n    });\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 400",
+                    "estack": "AssertionError: expected 404 to equal 400\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:56:41)",
+                    "diff": "- 404\n+ 400\n"
+                  },
+                  "uuid": "0a0ae525-2687-4b97-ab4e-6787d2558e4a",
+                  "parentUUID": "2e279236-5525-4657-869a-afe8bfc3397b",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject duplicate email registration",
+                  "fullTitle": "Authentication API Tests User Registration should reject duplicate email registration",
+                  "timedOut": null,
+                  "duration": 272,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.generateTestData('user').then((userData) => {\n    // First registration\n    cy.apiRequest('POST', '/auth/register', userData)\n        .then((response) => {\n        expect(response.status).to.equal(201);\n        // Second registration with same email\n        cy.apiRequest('POST', '/auth/register', userData)\n            .then((duplicateResponse) => {\n            expect(duplicateResponse.status).to.equal(409);\n            expect(duplicateResponse.body).to.have.property('message');\n            expect(duplicateResponse.body.message).to.include('already exists');\n        });\n    });\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 201",
+                    "estack": "AssertionError: expected 404 to equal 201\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:69:39)",
+                    "diff": "- 404\n+ 201\n"
+                  },
+                  "uuid": "153581b1-bf9e-4e35-89ce-50f7c324ac3b",
+                  "parentUUID": "2e279236-5525-4657-869a-afe8bfc3397b",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "772c7bdb-160d-45f7-a9e9-6a24737e2b6b",
+                "db28bccc-fee7-4edf-ba6f-febe4c667b31",
+                "0a0ae525-2687-4b97-ab4e-6787d2558e4a",
+                "153581b1-bf9e-4e35-89ce-50f7c324ac3b"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 1257,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "14ca9eff-6879-41fe-8395-7891c55d6ae9",
+              "title": "User Login",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should login with valid credentials",
+                  "fullTitle": "Authentication API Tests User Login should login with valid credentials",
+                  "timedOut": null,
+                  "duration": 366,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const loginData = {\n    email: registeredUser.email,\n    password: registeredUser.password\n};\ncy.apiRequest('POST', '/auth/login', loginData)\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('token');\n    expect(response.body).to.have.property('user');\n    expect(response.body.user.email).to.equal(registeredUser.email);\n    // Store token for future use\n    cy.wrap(response.body.token).as('authToken');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 200",
+                    "estack": "AssertionError: expected 404 to equal 200\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:104:37)",
+                    "diff": "- 404\n+ 200\n"
+                  },
+                  "uuid": "1d1cbc69-4a75-4199-a3e9-1c27c45928ac",
+                  "parentUUID": "14ca9eff-6879-41fe-8395-7891c55d6ae9",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject login with invalid credentials",
+                  "fullTitle": "Authentication API Tests User Login should reject login with invalid credentials",
+                  "timedOut": null,
+                  "duration": 382,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const invalidLoginData = {\n    email: registeredUser.email,\n    password: 'wrongpassword'\n};\ncy.apiRequest('POST', '/auth/login', invalidLoginData)\n    .then((response) => {\n    expect(response.status).to.equal(401);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('Invalid credentials');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 401",
+                    "estack": "AssertionError: expected 404 to equal 401\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:122:37)",
+                    "diff": "- 404\n+ 401\n"
+                  },
+                  "uuid": "d1fb224a-082a-4480-ab36-8f76c2668b01",
+                  "parentUUID": "14ca9eff-6879-41fe-8395-7891c55d6ae9",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject login with non-existent user",
+                  "fullTitle": "Authentication API Tests User Login should reject login with non-existent user",
+                  "timedOut": null,
+                  "duration": 383,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const nonExistentUser = {\n    email: 'nonexistent@example.com',\n    password: 'password123'\n};\ncy.apiRequest('POST', '/auth/login', nonExistentUser)\n    .then((response) => {\n    expect(response.status).to.equal(401);\n    expect(response.body).to.have.property('message');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 401",
+                    "estack": "AssertionError: expected 404 to equal 401\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:136:37)",
+                    "diff": "- 404\n+ 401\n"
+                  },
+                  "uuid": "b1647bef-1de6-4a44-b3d3-c1edcc1e3442",
+                  "parentUUID": "14ca9eff-6879-41fe-8395-7891c55d6ae9",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should validate login response performance",
+                  "fullTitle": "Authentication API Tests User Login should validate login response performance",
+                  "timedOut": null,
+                  "duration": 378,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const startTime = Date.now();\nconst loginData = {\n    email: registeredUser.email,\n    password: registeredUser.password\n};\ncy.apiRequest('POST', '/auth/login', loginData)\n    .then((response) => {\n    const responseTime = Date.now() - startTime;\n    expect(response.status).to.equal(200);\n    expect(responseTime).to.be.lessThan(2000); // 2 seconds max\n    cy.log(`Login response time: ${responseTime}ms`);\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 200",
+                    "estack": "AssertionError: expected 404 to equal 200\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:151:37)",
+                    "diff": "- 404\n+ 200\n"
+                  },
+                  "uuid": "3027ad66-826c-4df3-8c72-29528783e769",
+                  "parentUUID": "14ca9eff-6879-41fe-8395-7891c55d6ae9",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "1d1cbc69-4a75-4199-a3e9-1c27c45928ac",
+                "d1fb224a-082a-4480-ab36-8f76c2668b01",
+                "b1647bef-1de6-4a44-b3d3-c1edcc1e3442",
+                "3027ad66-826c-4df3-8c72-29528783e769"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 1509,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "f36b5a14-2aa7-440c-bb63-19c54d4f9580",
+              "title": "Token Validation",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should validate token and return user info",
+                  "fullTitle": "Authentication API Tests Token Validation should validate token and return user info",
+                  "timedOut": null,
+                  "duration": 377,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.authenticatedRequest('GET', '/auth/me', null, authToken)\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('user');\n    expect(response.body.user).to.have.property('email');\n    expect(response.body.user).to.have.property('id');\n});",
+                  "err": {
+                    "message": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.",
+                    "estack": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.\n    at $Cy.aliasNotFoundFor (https://api.fly.trade/__cypress/runner/cypress_runner.js:132315:66)\n    at $Cy.getAlias (https://api.fly.trade/__cypress/runner/cypress_runner.js:132258:12)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:131837:21)\n    at Object.subjectFn (https://api.fly.trade/__cypress/runner/cypress_runner.js:143866:16)\n    at $Cy.verifyUpcomingAssertions (https://api.fly.trade/__cypress/runner/cypress_runner.js:143205:31)\n    at onRetry (https://api.fly.trade/__cypress/runner/cypress_runner.js:143857:15)\n    at retryQuery (https://api.fly.trade/__cypress/runner/cypress_runner.js:143870:10)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:144023:17)\n    at tryCatcher (https://api.fly.trade/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://api.fly.trade/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://api.fly.trade/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromiseCtx (https://api.fly.trade/__cypress/runner/cypress_runner.js:1636:10)\n    at _drainQueueStep (https://api.fly.trade/__cypress/runner/cypress_runner.js:2434:12)\n    at _drainQueue (https://api.fly.trade/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:113:14)",
+                    "diff": null
+                  },
+                  "uuid": "9f93adc8-2095-4944-94b5-393bdd88d47f",
+                  "parentUUID": "f36b5a14-2aa7-440c-bb63-19c54d4f9580",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject invalid token",
+                  "fullTitle": "Authentication API Tests Token Validation should reject invalid token",
+                  "timedOut": null,
+                  "duration": 490,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "const invalidToken = 'invalid-token-123';\ncy.authenticatedRequest('GET', '/auth/me', null, invalidToken)\n    .then((response) => {\n    expect(response.status).to.equal(401);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('Invalid token');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 401",
+                    "estack": "AssertionError: expected 404 to equal 401\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:192:37)",
+                    "diff": "- 404\n+ 401\n"
+                  },
+                  "uuid": "2daf0a65-eafa-4648-96ca-c6702f9a8c8c",
+                  "parentUUID": "f36b5a14-2aa7-440c-bb63-19c54d4f9580",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should reject expired token",
+                  "fullTitle": "Authentication API Tests Token Validation should reject expired token",
+                  "timedOut": null,
+                  "duration": 461,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "// This test assumes you have a way to generate expired tokens\n// In a real scenario, you might need to wait for token expiration\n// or have a test endpoint to generate expired tokens\nconst expiredToken = 'expired.token.here';\ncy.authenticatedRequest('GET', '/auth/me', null, expiredToken)\n    .then((response) => {\n    expect(response.status).to.equal(401);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('Token expired');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 404 to equal 401",
+                    "estack": "AssertionError: expected 404 to equal 401\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:206:37)",
+                    "diff": "- 404\n+ 401\n"
+                  },
+                  "uuid": "951943de-4ac4-4b20-9868-683ea83dcd5e",
+                  "parentUUID": "f36b5a14-2aa7-440c-bb63-19c54d4f9580",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "9f93adc8-2095-4944-94b5-393bdd88d47f",
+                "2daf0a65-eafa-4648-96ca-c6702f9a8c8c",
+                "951943de-4ac4-4b20-9868-683ea83dcd5e"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 1328,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "2000acbf-c8a6-48af-ac96-9b4ef647b505",
+              "title": "Password Reset",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should initiate password reset for valid email",
+                  "fullTitle": "Authentication API Tests Password Reset should initiate password reset for valid email",
+                  "timedOut": null,
+                  "duration": 378,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.apiRequest('POST', '/auth/forgot-password', {\n    email: registeredUser.email\n})\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('Password reset email sent');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 429 to equal 200",
+                    "estack": "AssertionError: expected 429 to equal 200\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:230:37)",
+                    "diff": "- 429\n+ 200\n"
+                  },
+                  "uuid": "fae4bbf5-766b-4c13-9929-1ad23b5b332c",
+                  "parentUUID": "2000acbf-c8a6-48af-ac96-9b4ef647b505",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should handle password reset for non-existent email",
+                  "fullTitle": "Authentication API Tests Password Reset should handle password reset for non-existent email",
+                  "timedOut": null,
+                  "duration": 378,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.apiRequest('POST', '/auth/forgot-password', {\n    email: 'nonexistent@example.com'\n})\n    .then((response) => {\n    // Should return 200 for security reasons (don't reveal if email exists)\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('message');\n});",
+                  "err": {
+                    "message": "AssertionError: expected 429 to equal 200",
+                    "estack": "AssertionError: expected 429 to equal 200\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/authentication.cy.ts:242:37)",
+                    "diff": "- 429\n+ 200\n"
+                  },
+                  "uuid": "77eab660-af6d-4e25-ba03-0ad51aea1258",
+                  "parentUUID": "2000acbf-c8a6-48af-ac96-9b4ef647b505",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "fae4bbf5-766b-4c13-9929-1ad23b5b332c",
+                "77eab660-af6d-4e25-ba03-0ad51aea1258"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 756,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "d45d2122-6063-4883-9723-ea042c57d440",
+              "title": "Logout",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should logout successfully with valid token",
+                  "fullTitle": "Authentication API Tests Logout should logout successfully with valid token",
+                  "timedOut": null,
+                  "duration": 400,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.authenticatedRequest('POST', '/auth/logout', null, authToken)\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('Logged out successfully');\n});",
+                  "err": {
+                    "message": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.",
+                    "estack": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.\n    at $Cy.aliasNotFoundFor (https://api.fly.trade/__cypress/runner/cypress_runner.js:132315:66)\n    at $Cy.getAlias (https://api.fly.trade/__cypress/runner/cypress_runner.js:132258:12)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:131837:21)\n    at Object.subjectFn (https://api.fly.trade/__cypress/runner/cypress_runner.js:143866:16)\n    at $Cy.verifyUpcomingAssertions (https://api.fly.trade/__cypress/runner/cypress_runner.js:143205:31)\n    at onRetry (https://api.fly.trade/__cypress/runner/cypress_runner.js:143857:15)\n    at retryQuery (https://api.fly.trade/__cypress/runner/cypress_runner.js:143870:10)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:144023:17)\n    at tryCatcher (https://api.fly.trade/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://api.fly.trade/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://api.fly.trade/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromiseCtx (https://api.fly.trade/__cypress/runner/cypress_runner.js:1636:10)\n    at _drainQueueStep (https://api.fly.trade/__cypress/runner/cypress_runner.js:2434:12)\n    at _drainQueue (https://api.fly.trade/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:113:14)",
+                    "diff": null
+                  },
+                  "uuid": "aeb1be02-2539-400b-80e9-25dd44138c11",
+                  "parentUUID": "d45d2122-6063-4883-9723-ea042c57d440",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should invalidate token after logout",
+                  "fullTitle": "Authentication API Tests Logout should invalidate token after logout",
+                  "timedOut": null,
+                  "duration": 401,
+                  "state": "failed",
+                  "speed": null,
+                  "pass": false,
+                  "fail": true,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.authenticatedRequest('POST', '/auth/logout', null, authToken)\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    // Try to use the token after logout\n    cy.authenticatedRequest('GET', '/auth/me', null, authToken)\n        .then((meResponse) => {\n        expect(meResponse.status).to.equal(401);\n    });\n});",
+                  "err": {
+                    "message": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.",
+                    "estack": "CypressError: `cy.get()` could not find a registered alias for: `@authToken`.\nYou have not aliased anything yet.\n    at $Cy.aliasNotFoundFor (https://api.fly.trade/__cypress/runner/cypress_runner.js:132315:66)\n    at $Cy.getAlias (https://api.fly.trade/__cypress/runner/cypress_runner.js:132258:12)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:131837:21)\n    at Object.subjectFn (https://api.fly.trade/__cypress/runner/cypress_runner.js:143866:16)\n    at $Cy.verifyUpcomingAssertions (https://api.fly.trade/__cypress/runner/cypress_runner.js:143205:31)\n    at onRetry (https://api.fly.trade/__cypress/runner/cypress_runner.js:143857:15)\n    at retryQuery (https://api.fly.trade/__cypress/runner/cypress_runner.js:143870:10)\n    at <unknown> (https://api.fly.trade/__cypress/runner/cypress_runner.js:144023:17)\n    at tryCatcher (https://api.fly.trade/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://api.fly.trade/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://api.fly.trade/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromiseCtx (https://api.fly.trade/__cypress/runner/cypress_runner.js:1636:10)\n    at _drainQueueStep (https://api.fly.trade/__cypress/runner/cypress_runner.js:2434:12)\n    at _drainQueue (https://api.fly.trade/__cypress/runner/cypress_runner.js:2423:9)\n    at Async._drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2439:5)\n    at Async.drainQueues (https://api.fly.trade/__cypress/runner/cypress_runner.js:2309:14)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:113:14)",
+                    "diff": null
+                  },
+                  "uuid": "7afb6859-000f-4a59-8081-f5682672ce94",
+                  "parentUUID": "d45d2122-6063-4883-9723-ea042c57d440",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [],
+              "failures": [
+                "aeb1be02-2539-400b-80e9-25dd44138c11",
+                "7afb6859-000f-4a59-8081-f5682672ce94"
+              ],
+              "pending": [],
+              "skipped": [],
+              "duration": 801,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,259 @@
+{
+  "stats": {
+    "suites": 3,
+    "tests": 7,
+    "passes": 7,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-10T10:47:03.953Z",
+    "end": "2025-07-10T10:47:05.807Z",
+    "duration": 1854,
+    "testsRegistered": 7,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fd4273ac-de1f-4366-9b7f-87bc6ece0517",
+      "title": "",
+      "fullFile": "cypress/e2e/api/authentication.cy.ts",
+      "file": "cypress/e2e/api/authentication.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d2286855-0821-4fbc-a00a-8032d3d67824",
+          "title": "MagpieFi API - Authentication Endpoint Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+              "title": "Authentication Endpoint Availability",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should return 404 for register endpoint (not implemented)",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests Authentication Endpoint Availability should return 404 for register endpoint (not implemented)",
+                  "timedOut": null,
+                  "duration": 384,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const testUser = {\n    email: 'test@example.com',\n    password: 'testpassword123',\n    name: 'Test User'\n};\ncy.apiRequest('POST', '/auth/register', testUser)\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    cy.log('Register endpoint correctly returns 404 - not implemented');\n});",
+                  "err": {},
+                  "uuid": "9f49df57-1416-4351-b109-1fe04bc39baa",
+                  "parentUUID": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 404 for login endpoint (not implemented)",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests Authentication Endpoint Availability should return 404 for login endpoint (not implemented)",
+                  "timedOut": null,
+                  "duration": 137,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const credentials = {\n    email: 'test@example.com',\n    password: 'testpassword123'\n};\ncy.apiRequest('POST', '/auth/login', credentials)\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    cy.log('Login endpoint correctly returns 404 - not implemented');\n});",
+                  "err": {},
+                  "uuid": "259f58da-3f70-4b08-aa70-20fe444e9087",
+                  "parentUUID": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 404 for token validation endpoint (not implemented)",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests Authentication Endpoint Availability should return 404 for token validation endpoint (not implemented)",
+                  "timedOut": null,
+                  "duration": 118,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.apiRequest('GET', '/auth/validate', null, {\n    'Authorization': 'Bearer fake-token'\n})\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    cy.log('Token validation endpoint correctly returns 404 - not implemented');\n});",
+                  "err": {},
+                  "uuid": "b08ea99f-e453-415a-8283-0283ea33a22a",
+                  "parentUUID": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 404 for password reset endpoint (not implemented)",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests Authentication Endpoint Availability should return 404 for password reset endpoint (not implemented)",
+                  "timedOut": null,
+                  "duration": 129,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.apiRequest('POST', '/auth/reset-password', {\n    email: 'test@example.com'\n})\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    cy.log('Password reset endpoint correctly returns 404 - not implemented');\n});",
+                  "err": {},
+                  "uuid": "af17e392-fcb8-4c5f-bfad-3217e8b42ad2",
+                  "parentUUID": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should return 404 for logout endpoint (not implemented)",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests Authentication Endpoint Availability should return 404 for logout endpoint (not implemented)",
+                  "timedOut": null,
+                  "duration": 110,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.apiRequest('POST', '/auth/logout', null, {\n    'Authorization': 'Bearer fake-token'\n})\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    cy.log('Logout endpoint correctly returns 404 - not implemented');\n});",
+                  "err": {},
+                  "uuid": "120e3c14-8596-4c5a-ae5b-f2d22b3f7602",
+                  "parentUUID": "a7d787d0-353a-4426-81f3-1abcf704cadc",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "9f49df57-1416-4351-b109-1fe04bc39baa",
+                "259f58da-3f70-4b08-aa70-20fe444e9087",
+                "b08ea99f-e453-415a-8283-0283ea33a22a",
+                "af17e392-fcb8-4c5f-bfad-3217e8b42ad2",
+                "120e3c14-8596-4c5a-ae5b-f2d22b3f7602"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 878,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            },
+            {
+              "uuid": "c8c366cb-61f6-40fd-9f69-e585f7a26467",
+              "title": "API Structure Validation",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should validate that all auth endpoints have consistent 404 responses",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests API Structure Validation should validate that all auth endpoints have consistent 404 responses",
+                  "timedOut": null,
+                  "duration": 766,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const authEndpoints = [\n    '/auth/register',\n    '/auth/login',\n    '/auth/validate',\n    '/auth/reset-password',\n    '/auth/logout'\n];\nauthEndpoints.forEach(endpoint => {\n    cy.apiRequest('GET', endpoint)\n        .then((response) => {\n        expect(response.status).to.equal(404);\n        expect(response.body).to.have.property('message');\n        expect(response.body).to.have.property('request_id');\n        cy.log(`${endpoint} returns consistent 404 structure`);\n    });\n});",
+                  "err": {},
+                  "uuid": "3f5196fc-78bf-4c67-8d37-064780f8a811",
+                  "parentUUID": "c8c366cb-61f6-40fd-9f69-e585f7a26467",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should verify auth endpoints respond within acceptable time",
+                  "fullTitle": "MagpieFi API - Authentication Endpoint Tests API Structure Validation should verify auth endpoints respond within acceptable time",
+                  "timedOut": null,
+                  "duration": 116,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const startTime = Date.now();\ncy.apiRequest('POST', '/auth/login', {\n    email: 'test@example.com',\n    password: 'test123'\n})\n    .then((response) => {\n    const responseTime = Date.now() - startTime;\n    expect(response.status).to.equal(404);\n    expect(responseTime).to.be.lessThan(5000); // 5 seconds max\n    cy.log(`Auth endpoint response time: ${responseTime}ms`);\n});",
+                  "err": {},
+                  "uuid": "9e546079-f191-4e71-81b1-222ee2e3bf18",
+                  "parentUUID": "c8c366cb-61f6-40fd-9f69-e585f7a26467",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "3f5196fc-78bf-4c67-8d37-064780f8a811",
+                "9e546079-f191-4e71-81b1-222ee2e3bf18"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 882,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

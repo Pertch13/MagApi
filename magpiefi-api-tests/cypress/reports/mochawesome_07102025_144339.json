@@ -1,0 +1,225 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 7,
+    "passes": 6,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-07-10T10:43:38.139Z",
+    "end": "2025-07-10T10:43:39.976Z",
+    "duration": 1837,
+    "testsRegistered": 7,
+    "passPercent": 85.71428571428571,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "173c03a7-5447-4636-8fe6-ace8faecc166",
+      "title": "",
+      "fullFile": "cypress/e2e/api/quote.cy.ts",
+      "file": "cypress/e2e/api/quote.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+          "title": "MagpieFi API - Quote Endpoint Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should handle quote request with missing parameters",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should handle quote request with missing parameters",
+              "timedOut": null,
+              "duration": 267,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/aggregator/quote')\n    .then((response) => {\n    expect(response.status).to.be.oneOf([400, 422]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Missing params response: ${response.body.message}`);\n});",
+              "err": {},
+              "uuid": "96447560-c767-4f08-bd04-1ef8045a743d",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle quote request with invalid network",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should handle quote request with invalid network",
+              "timedOut": null,
+              "duration": 300,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const params = new URLSearchParams({\n    network: 'invalid-network',\n    fromTokenAddress: validQuoteParams.fromTokenAddress,\n    toTokenAddress: validQuoteParams.toTokenAddress,\n    sellAmount: validQuoteParams.sellAmount,\n    slippage: validQuoteParams.slippage.toString(),\n    gasless: validQuoteParams.gasless.toString()\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    expect(response.status).to.be.oneOf([400, 422]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Invalid network response: ${response.body.message}`);\n});",
+              "err": {
+                "message": "AssertionError: expected 500 to be one of [ 400, 422 ]",
+                "estack": "AssertionError: expected 500 to be one of [ 400, 422 ]\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/e2e/api/quote.cy.ts:32:38)",
+                "diff": "- 500\n+ [ 400, 422 ]\n"
+              },
+              "uuid": "bc07eb7f-5c83-47f5-b51c-6c047e9febf9",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle quote request with invalid token addresses",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should handle quote request with invalid token addresses",
+              "timedOut": null,
+              "duration": 120,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const params = new URLSearchParams({\n    network: validQuoteParams.network,\n    fromTokenAddress: 'invalid-address',\n    toTokenAddress: 'invalid-address',\n    sellAmount: validQuoteParams.sellAmount,\n    slippage: validQuoteParams.slippage.toString(),\n    gasless: validQuoteParams.gasless.toString()\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    expect(response.status).to.be.oneOf([400, 422, 500]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Invalid addresses response: ${response.body.message}`);\n});",
+              "err": {},
+              "uuid": "3ae528ed-e65e-4bc9-adfe-b6590f2b12fc",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle quote request with invalid sell amount",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should handle quote request with invalid sell amount",
+              "timedOut": null,
+              "duration": 109,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const params = new URLSearchParams({\n    network: validQuoteParams.network,\n    fromTokenAddress: validQuoteParams.fromTokenAddress,\n    toTokenAddress: validQuoteParams.toTokenAddress,\n    sellAmount: 'invalid-amount',\n    slippage: validQuoteParams.slippage.toString(),\n    gasless: validQuoteParams.gasless.toString()\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    expect(response.status).to.be.oneOf([400, 422]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Invalid amount response: ${response.body.message}`);\n});",
+              "err": {},
+              "uuid": "6ebe8ffb-c67d-4c0d-b7aa-fd9951f0f795",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle quote request with invalid slippage",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should handle quote request with invalid slippage",
+              "timedOut": null,
+              "duration": 114,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const params = new URLSearchParams({\n    network: validQuoteParams.network,\n    fromTokenAddress: validQuoteParams.fromTokenAddress,\n    toTokenAddress: validQuoteParams.toTokenAddress,\n    sellAmount: validQuoteParams.sellAmount,\n    slippage: '2', // Invalid slippage > 1\n    gasless: validQuoteParams.gasless.toString()\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    expect(response.status).to.be.oneOf([400, 422]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Invalid slippage response: ${response.body.message}`);\n});",
+              "err": {},
+              "uuid": "aec9598d-6d55-47a8-8c9d-b968269a2812",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should validate quote endpoint response structure",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should validate quote endpoint response structure",
+              "timedOut": null,
+              "duration": 107,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Test with known token addresses that might exist\nconst params = new URLSearchParams({\n    network: 'ethereum',\n    fromTokenAddress: '0x0000000000000000000000000000000000000000', // ETH\n    toTokenAddress: '0xA0b86a33E6441d2e8f4F0F2f2d8f0F2f2d8f0F2f', // Sample token\n    sellAmount: '1000000000000000000',\n    slippage: '0.01',\n    gasless: 'false'\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    // Log the response for debugging\n    cy.log(`Quote response status: ${response.status}`);\n    cy.log(`Quote response body: ${JSON.stringify(response.body)}`);\n    // The response should have a proper structure regardless of success/failure\n    expect(response.body).to.have.property('message');\n    // If it's a successful quote (status 200), validate the structure\n    if (response.status === 200) {\n        expect(response.body).to.have.property('quote');\n        expect(response.body.quote).to.have.property('sellAmount');\n        expect(response.body.quote).to.have.property('buyAmount');\n    }\n});",
+              "err": {},
+              "uuid": "5d9b411a-39e0-462a-8eaf-38da4a417c07",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should test performance of quote endpoint",
+              "fullTitle": "MagpieFi API - Quote Endpoint Tests should test performance of quote endpoint",
+              "timedOut": null,
+              "duration": 122,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\nconst params = new URLSearchParams({\n    network: 'ethereum',\n    fromTokenAddress: '0x0000000000000000000000000000000000000000',\n    toTokenAddress: '0xA0b86a33E6441d2e8f4F0F2f2d8f0F2f2d8f0F2f',\n    sellAmount: '1000000000000000000',\n    slippage: '0.01',\n    gasless: 'false'\n}).toString();\ncy.apiRequest('GET', `/aggregator/quote?${params}`)\n    .then((response) => {\n    const responseTime = Date.now() - startTime;\n    cy.log(`Quote endpoint response time: ${responseTime}ms`);\n    // Quote endpoint should respond within 10 seconds\n    expect(responseTime).to.be.lessThan(10000);\n    // Should return some response (even if error)\n    expect(response.body).to.have.property('message');\n});",
+              "err": {},
+              "uuid": "c1833120-cec2-43b6-a2cb-34206fcad11a",
+              "parentUUID": "d3f33058-a4f7-432f-89f0-1d493f10b1ed",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "96447560-c767-4f08-bd04-1ef8045a743d",
+            "3ae528ed-e65e-4bc9-adfe-b6590f2b12fc",
+            "6ebe8ffb-c67d-4c0d-b7aa-fd9951f0f795",
+            "aec9598d-6d55-47a8-8c9d-b968269a2812",
+            "5d9b411a-39e0-462a-8eaf-38da4a417c07",
+            "c1833120-cec2-43b6-a2cb-34206fcad11a"
+          ],
+          "failures": [
+            "bc07eb7f-5c83-47f5-b51c-6c047e9febf9"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1139,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

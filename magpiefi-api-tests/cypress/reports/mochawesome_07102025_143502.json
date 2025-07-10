@@ -1,0 +1,202 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 0,
+    "pending": 0,
+    "failures": 5,
+    "start": "2025-07-10T10:34:58.068Z",
+    "end": "2025-07-10T10:35:02.843Z",
+    "duration": 4775,
+    "testsRegistered": 5,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "efdd8479-0e7a-47b0-8bdc-2964f3660369",
+      "title": "",
+      "fullFile": "cypress/e2e/smoke/health-check.cy.ts",
+      "file": "cypress/e2e/smoke/health-check.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+          "title": "API Health Check - Smoke Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify API is accessible",
+              "fullTitle": "API Health Check - Smoke Tests should verify API is accessible",
+              "timedOut": null,
+              "duration": 270,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/health')\n    .then((response) => {\n    expect(response.status).to.equal(200);\n    expect(response.body).to.have.property('status');\n    expect(response.body.status).to.equal('ok');\n});",
+              "err": {
+                "message": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`",
+                "estack": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`\n    at getRet (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119316:70)\n    at tryCatcher (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:4338:29)\n    at Context.thenFn (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119325:66)\n    at Context.then (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119576:21)\n    at wrapped (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:138092:19)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:84:36)",
+                "diff": null
+              },
+              "uuid": "162bc3c8-3ec2-4988-b7c3-de6e30d16000",
+              "parentUUID": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify API returns proper headers",
+              "fullTitle": "API Health Check - Smoke Tests should verify API returns proper headers",
+              "timedOut": null,
+              "duration": 323,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/health')\n    .then((response) => {\n    expect(response.headers).to.have.property('content-type');\n    expect(response.headers['content-type']).to.include('application/json');\n});",
+              "err": {
+                "message": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`",
+                "estack": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`\n    at getRet (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119316:70)\n    at tryCatcher (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:4338:29)\n    at Context.thenFn (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119325:66)\n    at Context.then (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119576:21)\n    at wrapped (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:138092:19)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:84:36)",
+                "diff": null
+              },
+              "uuid": "9caad807-9efd-47cb-a82f-aa22e9783ddc",
+              "parentUUID": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify API response time is acceptable",
+              "fullTitle": "API Health Check - Smoke Tests should verify API response time is acceptable",
+              "timedOut": null,
+              "duration": 288,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\ncy.apiRequest('GET', '/health')\n    .then((response) => {\n    const responseTime = Date.now() - startTime;\n    expect(response.status).to.equal(200);\n    expect(responseTime).to.be.lessThan(5000); // 5 seconds max\n    cy.log(`Response time: ${responseTime}ms`);\n});",
+              "err": {
+                "message": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`",
+                "estack": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`\n    at getRet (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119316:70)\n    at tryCatcher (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:4338:29)\n    at Context.thenFn (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119325:66)\n    at Context.then (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119576:21)\n    at wrapped (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:138092:19)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:84:36)",
+                "diff": null
+              },
+              "uuid": "2d44b153-0208-40b0-8669-8348b2fd151c",
+              "parentUUID": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle invalid endpoints gracefully",
+              "fullTitle": "API Health Check - Smoke Tests should handle invalid endpoints gracefully",
+              "timedOut": null,
+              "duration": 319,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/invalid-endpoint')\n    .then((response) => {\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n});",
+              "err": {
+                "message": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`",
+                "estack": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`\n    at getRet (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119316:70)\n    at tryCatcher (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:4338:29)\n    at Context.thenFn (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119325:66)\n    at Context.then (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119576:21)\n    at wrapped (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:138092:19)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:84:36)",
+                "diff": null
+              },
+              "uuid": "3aeefa01-7864-4d80-83cf-ca94c5df79ed",
+              "parentUUID": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return API version information",
+              "fullTitle": "API Health Check - Smoke Tests should return API version information",
+              "timedOut": null,
+              "duration": 271,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/version')\n    .then((response) => {\n    if (response.status === 200) {\n        expect(response.body).to.have.property('version');\n        expect(response.body.version).to.be.a('string');\n        cy.log(`API Version: ${response.body.version}`);\n    }\n    else {\n        cy.log('Version endpoint not available');\n    }\n});",
+              "err": {
+                "message": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`",
+                "estack": "CypressError: `cy.then()` failed because you are mixing up async and sync code.\n\nIn your callback function you invoked 1 or more cy commands but then returned a synchronous value.\n\nCypress commands are asynchronous and it doesn't make sense to queue cy commands and yet return a synchronous value.\n\nYou likely forgot to properly chain the cy commands using another `cy.then()`.\n\nThe value you synchronously returned was: `Object{8}`\n    at getRet (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119316:70)\n    at tryCatcher (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:4338:29)\n    at Context.thenFn (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119325:66)\n    at Context.then (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:119576:21)\n    at wrapped (https://api.magpiefi.xyz/__cypress/runner/cypress_runner.js:138092:19)\nFrom Your Spec Code:\n    at Context.eval (webpack://magpiefi-api-tests/./cypress/support/api-commands.ts:84:36)",
+                "diff": null
+              },
+              "uuid": "5377952e-cf3b-4fa3-a43e-23791f86b119",
+              "parentUUID": "66d3b25e-0b6d-487c-bf2b-5cc7f5400bee",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "162bc3c8-3ec2-4988-b7c3-de6e30d16000",
+            "9caad807-9efd-47cb-a82f-aa22e9783ddc",
+            "2d44b153-0208-40b0-8669-8348b2fd151c",
+            "3aeefa01-7864-4d80-83cf-ca94c5df79ed",
+            "5377952e-cf3b-4fa3-a43e-23791f86b119"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1471,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

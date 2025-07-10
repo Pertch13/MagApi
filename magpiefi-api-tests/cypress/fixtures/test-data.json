@@ -1,0 +1,141 @@
+{
+  "users": {
+    "validUser": {
+      "email": "test@magpiefi.com",
+      "password": "TestPassword123!",
+      "firstName": "Test",
+      "lastName": "User",
+      "phone": "+1234567890"
+    },
+    "adminUser": {
+      "email": "admin@magpiefi.com",
+      "password": "AdminPassword123!",
+      "firstName": "Admin",
+      "lastName": "User",
+      "role": "admin"
+    },
+    "invalidUser": {
+      "email": "invalid@example.com",
+      "password": "wrongpassword"
+    }
+  },
+  "accounts": {
+    "savingsAccount": {
+      "accountType": "savings",
+      "currency": "USD",
+      "initialBalance": 1000.00
+    },
+    "checkingAccount": {
+      "accountType": "checking",
+      "currency": "USD",
+      "initialBalance": 500.00
+    }
+  },
+  "transactions": {
+    "validTransaction": {
+      "amount": 100.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Test transaction"
+    },
+    "largeTransaction": {
+      "amount": 10000.00,
+      "currency": "USD",
+      "type": "transfer",
+      "description": "Large amount transaction"
+    }
+  },
+  "apiResponses": {
+    "successResponse": {
+      "status": "success",
+      "message": "Operation completed successfully"
+    },
+    "errorResponse": {
+      "status": "error",
+      "message": "An error occurred",
+      "code": "GENERIC_ERROR"
+    },
+    "validationErrorResponse": {
+      "status": "error",
+      "message": "Validation failed",
+      "code": "VALIDATION_ERROR",
+      "errors": [
+        {
+          "field": "email",
+          "message": "Email is required"
+        },
+        {
+          "field": "password",
+          "message": "Password must be at least 8 characters"
+        }
+      ]
+    }
+  },
+  "pagination": {
+    "defaultParams": {
+      "page": 1,
+      "limit": 10,
+      "sortBy": "createdAt",
+      "sortOrder": "desc"
+    },
+    "largePageParams": {
+      "page": 1,
+      "limit": 100,
+      "sortBy": "createdAt",
+      "sortOrder": "desc"
+    }
+  },
+  "validation": {
+    "invalidEmails": [
+      "invalid-email",
+      "@invalid.com",
+      "test@",
+      "test@invalid",
+      ""
+    ],
+    "invalidPasswords": [
+      "short",
+      "12345678",
+      "password",
+      "PASSWORD",
+      ""
+    ],
+    "invalidAmounts": [
+      -100,
+      0,
+      "invalid",
+      "null",
+      "undefined"
+    ]
+  },
+  "testScenarios": {
+    "performance": {
+      "maxResponseTime": 5000,
+      "acceptableResponseTime": 2000
+    },
+    "security": {
+      "sqlInjectionPayloads": [
+        "'; DROP TABLE users; --",
+        "' OR '1'='1",
+        "' UNION SELECT * FROM users --"
+      ],
+      "xssPayloads": [
+        "<script>alert('XSS')</script>",
+        "javascript:alert('XSS')",
+        "<img src=x onerror=alert('XSS')>"
+      ]
+    },
+    "edgeCases": {
+      "longStrings": {
+        "veryLongString": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "maxLengthString": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "specialCharacters": [
+        "!@#$%^&*()",
+        "äöüß",
+        "中文测试",
+        "🚀🎉💻"
+      ]
+    }
+  }
+} 

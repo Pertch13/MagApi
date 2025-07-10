@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-10T10:47:14.135Z",
+    "end": "2025-07-10T10:47:14.947Z",
+    "duration": 812,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b930cacb-d7ad-400b-80a8-02768ef87ea5",
+      "title": "",
+      "fullFile": "cypress/e2e/smoke/health-check.cy.ts",
+      "file": "cypress/e2e/smoke/health-check.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+          "title": "MagpieFi API - Smoke Tests",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should verify API is accessible",
+              "fullTitle": "MagpieFi API - Smoke Tests should verify API is accessible",
+              "timedOut": null,
+              "duration": 150,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/')\n    .then((response) => {\n    // API returns 404 for root but with a proper JSON response\n    expect(response.status).to.equal(404);\n    expect(response.body).to.have.property('message');\n    expect(response.body.message).to.include('no Route matched');\n    expect(response.body).to.have.property('request_id');\n});",
+              "err": {},
+              "uuid": "e7590ba1-ff91-48a7-98a0-579065f36853",
+              "parentUUID": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify API returns proper headers",
+              "fullTitle": "MagpieFi API - Smoke Tests should verify API returns proper headers",
+              "timedOut": null,
+              "duration": 113,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/')\n    .then((response) => {\n    expect(response.headers).to.have.property('content-type');\n    expect(response.headers['content-type']).to.include('application/json');\n});",
+              "err": {},
+              "uuid": "ab2e51c0-87d9-4d59-8d73-f0a53c31a2b4",
+              "parentUUID": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify API response time is acceptable",
+              "fullTitle": "MagpieFi API - Smoke Tests should verify API response time is acceptable",
+              "timedOut": null,
+              "duration": 247,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const startTime = Date.now();\ncy.apiRequest('GET', '/')\n    .then((response) => {\n    const responseTime = Date.now() - startTime;\n    expect(response.status).to.be.oneOf([200, 404]); // Either success or expected 404\n    expect(responseTime).to.be.lessThan(5000); // 5 seconds max\n    cy.log(`Response time: ${responseTime}ms`);\n});",
+              "err": {},
+              "uuid": "53a22e36-868f-497a-979a-03606408526e",
+              "parentUUID": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should handle quote endpoint with missing parameters",
+              "fullTitle": "MagpieFi API - Smoke Tests should handle quote endpoint with missing parameters",
+              "timedOut": null,
+              "duration": 131,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.apiRequest('GET', '/aggregator/quote')\n    .then((response) => {\n    // Should return 400 for missing required parameters\n    expect(response.status).to.be.oneOf([400, 422]);\n    expect(response.body).to.have.property('message');\n});",
+              "err": {},
+              "uuid": "c5a2e2cb-036d-46c9-ae8f-263da76ca3bd",
+              "parentUUID": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should verify quote endpoint structure with invalid parameters",
+              "fullTitle": "MagpieFi API - Smoke Tests should verify quote endpoint structure with invalid parameters",
+              "timedOut": null,
+              "duration": 115,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Test with invalid but present parameters\ncy.apiRequest('GET', '/aggregator/quote?network=invalid&fromTokenAddress=0x123&toTokenAddress=0x456&sellAmount=1000&slippage=0.01&gasless=false')\n    .then((response) => {\n    // Should return an error response but with proper structure\n    expect(response.status).to.be.oneOf([400, 422, 500]);\n    expect(response.body).to.have.property('message');\n    cy.log(`Quote endpoint error response: ${response.body.message}`);\n});",
+              "err": {},
+              "uuid": "a7589b8e-accc-45d0-b0c8-0f669efa0934",
+              "parentUUID": "e72a96e5-4b18-4f62-b39a-61c0e38a93fd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e7590ba1-ff91-48a7-98a0-579065f36853",
+            "ab2e51c0-87d9-4d59-8d73-f0a53c31a2b4",
+            "53a22e36-868f-497a-979a-03606408526e",
+            "c5a2e2cb-036d-46c9-ae8f-263da76ca3bd",
+            "a7589b8e-accc-45d0-b0c8-0f669efa0934"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 756,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
